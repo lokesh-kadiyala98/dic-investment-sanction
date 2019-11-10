@@ -1,0 +1,55 @@
+body {
+  margin-bottom: 250px;
+}
+
+h4[class*="annex"] {
+  color: #00b0f1;
+  text-transform: uppercase;
+}
+
+.annex-number {
+  margin: 20px 0;
+}
+
+.annex-head {
+  text-align: center;
+}
+
+table textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+textarea {
+  border-color: transparent;
+  transition: border-color 1s;
+}
+
+textarea:hover {
+  border-color: #00b0f1;
+}
+
+table input {
+  width: 100%;
+  height: 100%;
+}
+
+input {
+  border-color: transparent;
+  transition: border-color 0.5s;
+}
+
+input:hover {
+  border-color: #00b0f1;
+}
+
+.certificate p input {
+  padding: 0 10px;
+  border: none;
+  border-bottom: 1px dashed black;
+}
+
+.sign {
+  margin-top: 5em;
+}
