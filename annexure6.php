@@ -1,17 +1,5 @@
 <?php
   session_start();
-
-  require_once('configuration/dbConnection.php');
-
-  if(isset($_POST['formSubmit'])) {
-    $query = 'INSERT INTO annexure_6 VALUES( 0, '.$_POST['nameOfEnterprise'].', '.$_POST['addressOfEnterprise'].', '.$_POST['letterNo'].', '.$_POST['dtd'].', '.$_POST['disbursedAmt'].', '.
-    $_POST['termLoanSancDate'].', '.$_POST['termLoanSancAmt'].', '.$_POST['loanDisbDate'].', '.$_POST['loanDisbAmt'].', '.$_POST['landAppr'].', '.
-    $_POST['landActu'].', '.$_POST['buildingAppr'].', '.$_POST['buildingActu'].', '.$_POST['plantAndMachAppr'].', '.$_POST['plantAndMachActu'].', '.
-    $_POST['otherAssetsAppr'].', '.$_POST['otherAssetsActu'].', '.$_POST['totalAppr'].', '.$_POST['totalActu'].', '.$_POST['m_s'].', '.
-    $_POST['entreLoc'].', '.$_POST['estCost'].', '.$_POST['declarationPlace'].', '.$_POST['declarationDate'].')';
-    echo $query;
-  }
-
 ?>
 <html>
   <head>
@@ -21,19 +9,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/c1a14cb4ed.js" crossorigin="anonymous"></script>
     <title>Annexure 6</title>
   </head>
   <body>
     <div class="container">
+
       <h4 class="annex-number text-right">Annexure - 6</h4>
       <h4 class="annex-head">FIXED INVESTMENT CERTIFICATE FROM THE BANK / FINANCIAL INSTITUTIONS REQUIRED UNDER 2014-19 POLICY</h4>
+
+      <?php
+        require_once('configuration/dbConnection.php');
+
+        if(isset($_POST['formSubmit'])) {
+          $query = "INSERT INTO annexure_6 VALUES( 0, '".$_POST['nameOfEnterprise']."', '".$_POST['addressOfEnterprise']."', '".$_POST['letterNo']."', '".$_POST['dtd']."', ".$_POST['disbursedAmt'].",'".$_POST['termLoanSancDate']."',
+          ".$_POST['termLoanSancAmt'].", '".$_POST['loanDisbDate']."', ".$_POST['loanDisbAmt'].", ".$_POST['landAppr'].", ".$_POST['landActu'].", ".$_POST['buildingAppr'].", ".$_POST['buildingActu'].", ".$_POST['plantAndMachAppr'].",
+          ".$_POST['plantAndMachActu'].", ".$_POST['otherAssetsAppr'].", ".$_POST['otherAssetsActu'].", ".$_POST['totalAppr'].", ".$_POST['totalActu'].", '".$_POST['m_s']."', '".$_POST['entreLoc']."', ".$_POST['estCost'].",
+          '".$_POST['declarationPlace']."', '".$_POST['declarationDate']."')";
+
+          $result = mysqli_query($dbc, $query) or die('<div class="alert alert-warning"><strong>DBError!!</strong> couldn\'t execute query.</div>');
+
+          echo '<button class="btn btn-outline-dark btn-lg mb-2" onclick="location.href=\'annexure6.php\'"><i class="fas fa-backspace"></i></button>';
+
+          if($result)
+            echo '<div class="alert alert-success"><strong>Success!!</strong> values stored in database.</div>';
+        }
+
+      ?>
 
       <form method="post" >
         <div class="mt-5 certificate">
           <p class="mt-3 mb-5">
-            M/S <input type="text" name="nameOfEnterprise" /> (mention name of the enterprise) factory located at <input type="text" name="addressOfEnterprise" /> (mention factory location of the
-            enterprise) have been sanctioned term loan under order/letter No: <input type="number" name="letterNo" /> dtd: <input type="number" name="dtd" /> and have been disbursed the amounts of Rs.
-            <input type="number" name="disbursedAmt" />. The investment made by the enterprise is as shown below:
+            M/S <input required type="text" name="nameOfEnterprise" /> (mention name of the enterprise) factory located at <input required type="text" name="addressOfEnterprise" /> (mention factory location of the
+            enterprise) have been sanctioned term loan under order/letter No: <input required type="number" name="letterNo" /> dtd: <input required type="number" name="dtd" /> and have been disbursed the amounts of Rs.
+            <input required type="number" name="disbursedAmt" />. The investment made by the enterprise is as shown below:
           </p>
         </div>
 
@@ -48,39 +57,39 @@
             <tr>
               <th>a.</th>
               <th>Term loan sanctioned</th>
-              <td><input type="date" name="termLoanSancDate" /></td>
-              <td><input type="number" name="termLoanSancAmt" /></td>
+              <td><input required type="date" name="termLoanSancDate" /></td>
+              <td><input required type="number" name="termLoanSancAmt" /></td>
             </tr>
             <tr>
               <th rowspan="7">b.</th>
               <th rowspan="6">Loan amount disbursed on (mention all the dates and amount of loan disbursed sanctioned as per above letters)</th>
-              <td><input type="date" /></td>
-              <td><input type="number" /></td>
+              <td><input required type="date" /></td>
+              <td><input required type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
-              <td><input type="date"  /></td>
-              <td><input type="number" /></td>
-            </tr>
-            <tr>
-              <td><input type="date" /></td>
-              <td><input type="number" /></td>
+              <td><input required type="date"  /></td>
+              <td><input required type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <td><input type="date" /></td>
-              <td><input type="number" /></td>
+              <td><input type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <td><input type="date" /></td>
-              <td><input type="number" /></td>
+              <td><input type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <td><input type="date" /></td>
-              <td><input type="number" /></td>
+              <td><input type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
+            </tr>
+            <tr>
+              <td><input type="date" /></td>
+              <td><input type="number" class='loanDibursed' oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <th>Total amount disbursed as on</th>
-              <td><input type="date" name="loanDisbDate" /></td>
-              <td><input type="number" name="loanDisbAmt" /></td>
+              <td><input required type="date" name="loanDisbDate" /></td>
+              <td><input required disabled type="number" name="loanDisbAmt" id="totalLoanDisbursed" oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <th>c.</th>
@@ -95,40 +104,40 @@
             <tr>
               <th></th>
               <th>i) Land (excluding lease hold)</th>
-              <td><input type="number" name="landAppr" /></td>
-              <td><input type="number" name="landActu" /></td>
+              <td><input required type="number" class="asPerAppraisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="landAppr" /></td>
+              <td><input required type="number" class="asPerActualInvst" oninput="calculateTotal('asPerActualInvst','totalActual')" name="landActu" /></td>
             </tr>
             <tr>
               <th></th>
               <th>ii) Building (excluding residential quarters/guest houses).</th>
-              <td><input type="number" name="buildingAppr" /></td>
-              <td><input type="number" name="buildingActu" /></td>
+              <td><input required type="number" class="asPerAppraisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="buildingAppr" /></td>
+              <td><input required type="number" class="asPerActualInvst" oninput="calculateTotal('asPerActualInvst','totalActual')" name="buildingActu" /></td>
             </tr>
             <tr>
               <th></th>
               <th>iii) Plant and machinery (excluding technical knowhow, engineering fees, feasibility study, etc.)</th>
-              <td><input type="number" name="plantAndMachAppr" /></td>
-              <td><input type="number" name="plantAndMachActu" /></td>
+              <td><input required type="number" class="asPerAppraisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="plantAndMachAppr" /></td>
+              <td><input required type="number" class="asPerActualInvst" oninput="calculateTotal('asPerActualInvst','totalActual')" name="plantAndMachActu" /></td>
             </tr>
             <tr>
               <th></th>
               <th>iv) Other assets, tools, jigsdies, DG sets, boilers, etc. (please specify the items)</th>
-              <td><input type="number" name="otherAssetsAppr" /></td>
-              <td><input type="number" name="otherAssetsActu" /></td>
+              <td><input required type="number" class="asPerAppraisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="otherAssetsAppr" /></td>
+              <td><input required type="number" class="asPerActualInvst" oninput="calculateTotal('asPerActualInvst','totalActual')" name="otherAssetsActu" /></td>
             </tr>
             <tr>
               <th></th>
               <th>Total</th>
-              <td><input type="number" name="totalAppr" /></td>
-              <td><input type="number" name="totalActu" /></td>
+              <td><input required disabled type="number" id="totalAsPerApprisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="totalAppr" /></td>
+              <td><input required disabled type="number" id="totalActual" oninput="calculateTotal('asPerActualInvst','totalActual')" name="totalActu" /></td>
             </tr>
           </tbody>
         </table>
 
         <div class="mt-5 certificate">
           <p class="mt-3">
-            Certified that the sanction of financial assistance to M/S <input type="text" name="m_s" /> for the enterprises at <input type="text" name="entreLoc" /> has been considered on the basis of
-            the company's assessed requirement of factory buildings and the cost is estimated at Rs. <input type="number" name="estCost" /> as per project report.
+            Certified that the sanction of financial assistance to M/S <input required type="text" name="m_s" /> for the enterprises at <input required type="text" name="entreLoc" /> has been considered on the basis of
+            the company's assessed requirement of factory buildings and the cost is estimated at Rs. <input required type="number" name="estCost" /> as per project report.
           </p>
           <p>
             We certify that this investment certificate is issued after verifying the bills and vouchers made available by the enterprise for purposes of release of Term loan Installments (including promoter's investments and based on the
@@ -140,8 +149,8 @@
             We are in possession of relevant bills and vouchers on which this investment certificate is issued and we agree to make available the same as and when required for any verification purpose, before the loan liability is discharged.
           </p>
           <div class="text-right sign">Signature of the<br/> Branch Manager/Manager<br/>(Name of the Bank/Institution)</div>
-          <p>Place: <input type="text" name="declarationPlace" /> </P>
-          <p>Date: <input type="date" name="declarationDate" /> </p>
+          <p>Place: <input required type="text" name="declarationPlace" /> </P>
+          <p>Date: <input required type="date" name="declarationDate" /> </p>
         </div>
 
         <button class="btn btn-light" onclick="return printPage()">Print Page</button>
@@ -149,24 +158,39 @@
       </form>
 
     </div>
-  </body>
-  <script>
-    //To Do: Change the variable below to false during normal code execution. While testing change it to true
-    var inPrintPage = true
-    function printPage() {
-      window.print()
-      inPrintPage = true
-      return false
-    }
 
-    function validatePrint() {
-      if(!inPrintPage){
-        alert('We recommend to download or print the page as PDF first.')
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <script>
+      //To Do: Change the variable below to false during normal code execution. While testing change it to true
+      var inPrintPage = true
+      function printPage() {
+        window.print()
+        inPrintPage = true
         return false
-      } else {
-        return true
       }
-    }
 
-  </script>
+      function calculateTotal(className, id) {
+        var x = document.getElementsByClassName(className)
+        var sum = 0
+        for (let i=0; i<x.length; i++){
+          sum += parseInt(x[i].value ? x[i].value : 0)
+        }
+        document.getElementById(id).value = sum;
+      }
+
+      function validatePrint() {
+        if(!inPrintPage){
+          alert('We recommend to download or print the page as PDF first.')
+          return false
+        } else {
+          return true
+        }
+      }
+
+    </script>
+
+  </body>
 </html>

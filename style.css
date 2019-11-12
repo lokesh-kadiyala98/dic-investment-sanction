@@ -48,6 +48,10 @@ input:focus {
   border-color: transparent;
 }
 
+input:disabled {
+  background-color: inherit;
+}
+
 .certificate p input {
   padding: 0 10px;
   border: none;
