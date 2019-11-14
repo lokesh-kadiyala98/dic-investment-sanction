@@ -33,6 +33,7 @@
 
           if($result)
             echo '<div class="alert alert-success"><strong>Success!!</strong> values stored in database.</div>';
+
         }
 
       ?>
