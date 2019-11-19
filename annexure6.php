@@ -21,11 +21,40 @@
       <?php
         require_once('configuration/dbConnection.php');
 
+        function replace_empty_with_zero($var) {
+          if(empty($var)){
+            return 0;
+          }else{
+            return $var;
+          }
+        }
+
         if(isset($_POST['formSubmit'])) {
-          $query = "INSERT INTO annexure_6 VALUES( 0, '".$_POST['nameOfEnterprise']."', '".$_POST['addressOfEnterprise']."', '".$_POST['letterNo']."', '".$_POST['dtd']."', ".$_POST['disbursedAmt'].",'".$_POST['termLoanSancDate']."',
-          ".$_POST['termLoanSancAmt'].", '".$_POST['loanDisbDate']."', ".$_POST['loanDisbAmt'].", ".$_POST['landAppr'].", ".$_POST['landActu'].", ".$_POST['buildingAppr'].", ".$_POST['buildingActu'].", ".$_POST['plantAndMachAppr'].",
-          ".$_POST['plantAndMachActu'].", ".$_POST['otherAssetsAppr'].", ".$_POST['otherAssetsActu'].", ".$_POST['totalAppr'].", ".$_POST['totalActu'].", '".$_POST['m_s']."', '".$_POST['entreLoc']."', ".$_POST['estCost'].",
-          '".$_POST['declarationPlace']."', '".$_POST['declarationDate']."')";
+          $query = "INSERT INTO annexure_6 VALUES( 0,
+            '".$_POST['nameOfEnterprise']."',
+            '".$_POST['addressOfEnterprise']."',
+            '".$_POST['letterNo']."',
+            '".$_POST['dtd']."',
+            ".$_POST['disbursedAmt'].",
+            '".$_POST['termLoanSancDate']."',
+            ".$_POST['termLoanSancAmt'].",
+            '".$_POST['loanDisbDate']."',
+            ".$_POST['loanDisbAmt'].",
+            ".$_POST['landAppr'].",
+            ".$_POST['landActu'].",
+            ".$_POST['buildingAppr'].",
+            ".$_POST['buildingActu'].",
+            ".$_POST['plantAndMachAppr'].",
+            ".$_POST['plantAndMachActu'].",
+            ".$_POST['otherAssetsAppr'].",
+            ".$_POST['otherAssetsActu'].",
+            ".$_POST['totalAppr'].",
+            ".$_POST['totalActu'].",
+            '".$_POST['m_s']."',
+            '".$_POST['entreLoc']."',
+            ".$_POST['estCost'].",
+            '".$_POST['declarationPlace']."',
+            '".$_POST['declarationDate']."')";
 
           $result = mysqli_query($dbc, $query) or die('<div class="alert alert-warning"><strong>DBError!!</strong> couldn\'t execute query.</div>');
 
@@ -34,7 +63,7 @@
           if($result)
             echo '<div class="alert alert-success"><strong>Success!!</strong> values stored in database.</div>';
 
-        }
+        } else {
 
       ?>
 
@@ -158,40 +187,16 @@
         <button class="btn btn-light" onclick="return validatePrint()" type="submit" name="formSubmit" >Submit</button>
       </form>
 
+      <?php
+        }
+      ?>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-    <script>
-      //To Do: Change the variable below to false during normal code execution. While testing change it to true
-      var inPrintPage = true
-      function printPage() {
-        window.print()
-        inPrintPage = true
-        return false
-      }
-
-      function calculateTotal(className, id) {
-        var x = document.getElementsByClassName(className)
-        var sum = 0
-        for (let i=0; i<x.length; i++){
-          sum += parseInt(x[i].value ? x[i].value : 0)
-        }
-        document.getElementById(id).value = sum;
-      }
-
-      function validatePrint() {
-        if(!inPrintPage){
-          alert('We recommend to download or print the page as PDF first.')
-          return false
-        } else {
-          return true
-        }
-      }
-
-    </script>
+    <script src="script.js"></script>
 
   </body>
 </html>

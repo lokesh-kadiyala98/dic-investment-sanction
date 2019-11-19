@@ -21,6 +21,14 @@
       <?php
         require_once('configuration/dbConnection.php');
 
+        function replace_empty_with_zero($var) {
+          if(empty($var)){
+            return 0;
+          }else{
+            return $var;
+          }
+        }
+
         if(isset($_POST['formSubmit'])) {
 
           $query = "INSERT INTO annexure_7 VALUES(0,
@@ -41,14 +49,14 @@
           if($result)
             echo '<div class="alert alert-success"><strong>Success!!</strong> values stored in database.</div>';
 
-        }
+        } else {
 
       ?>
 
       <form method="post" >
         <div class="mt-5 certificate">
           <p class="mt-3 mb-5">
-            I, heareby certify thata as against the estimated cost of Rs. <input   type="number" value=0 name="estCost" /> of the building and civil works for M/s <input   type="text" name="nameOfEnterprise" /> (mention the enterprise
+            I, heareby certify thata as against the estimated cost of Rs. <input  type="number" value=0 name="estCost" /> of the building and civil works for M/s <input  type="text" name="nameOfEnterprise" /> (mention the enterprise
             name) for their project at <input  type="text" name="addressOfEnterprise" /> (mention the location of the enterprise). The enterprise has completed the civil works and the particulars are as under:
           </p>
         </div>
@@ -94,6 +102,17 @@
         <button class="btn btn-light" onclick="return printPage()">Print Page</button>
         <button class="btn btn-light" onclick="return validatePrint()" type="submit" name="formSubmit" >Submit</button>
       </form>
+
+      <?php
+        }
+      ?>
+
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
   </body>
 </html>

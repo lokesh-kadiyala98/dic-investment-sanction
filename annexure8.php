@@ -20,6 +20,49 @@
 
       <?php
         require_once('configuration/dbConnection.php');
+
+        function replace_empty_with_zero($var) {
+          if(empty($var)){
+            return 0;
+          }else{
+            return $var;
+          }
+        }
+
+        if(isset($_POST['formSubmit'])){
+          $query = "INSERT INTO annexure_8 VALUES(0,
+            '".$_POST['nameOfEnterprise']."',
+            '".$_POST['addressOfEnterprise']."',
+            '".$_POST['prodOffice']."',
+            '".$_POST['prodFactory']."',
+            ".replace_empty_with_zero($_POST['yearOfEstOffice']).",
+            ".replace_empty_with_zero($_POST['yearOfEstFactory']).",
+            '".$_POST['propOffice']."',
+            '".$_POST['propFactory']."',
+            '".$_POST['inchargeOffice']."',
+            '".$_POST['inchargeFactory']."',
+            '".$_POST['regOffice']."',
+            '".$_POST['regFactory']."',
+            ".replace_empty_with_zero($_POST['totEmpNoGrpA']).",
+            ".replace_empty_with_zero($_POST['totEmpNoGrpB']).",
+            ".replace_empty_with_zero($_POST['totEmpNoGrpC']).",
+            ".replace_empty_with_zero($_POST['totEmpNoGrpD']).",
+            ".replace_empty_with_zero($_POST['localEmpNoGrpA']).",
+            ".replace_empty_with_zero($_POST['localEmpNoGrpB']).",
+            ".replace_empty_with_zero($_POST['localEmpNoGrpC']).",
+            ".replace_empty_with_zero($_POST['localEmpNoGrpD']).",
+            '".$_POST['declarationPlace']."',
+            '".$_POST['declarationDate']."')";
+
+            $result = mysqli_query($dbc, $query) or die('<div class="alert alert-warning"><strong>DBError!!</strong> couldn\'t execute query.</div>');
+
+            echo '<button class="btn btn-outline-dark btn-lg mb-2" onclick="location.href=\'annexure8.php\'"><i class="fas fa-backspace"></i></button>';
+
+            if($result)
+              echo '<div class="alert alert-success"><strong>Success!!</strong> values stored in database.</div>';
+
+        } else {
+
       ?>
 
       <form method="post" >
@@ -136,23 +179,20 @@
         <p>Place: <input required type="text" name="declarationPlace" /> </P>
         <p>Date: <input required type="date" name="declarationDate" /> </p>
         <div class="text-right sign">Signature of authorized person</div>
+        <button class="btn btn-light" onclick="return printPage()">Print Page</button>
+        <button class="btn btn-light" onclick="return validatePrint()" type="submit" name="formSubmit" >Submit</button>
       </form>
-    </div>
-    <script>
-      function calculateTotal(className, id) {
-        var x = document.getElementsByClassName(className)
-        var sum = 0
-        for (let i=0; i<x.length; i++){
-          sum += parseInt(x[i].value ? x[i].value : 0)
-        }
-        document.getElementById(id).value = sum
-      }
 
-      function calculatePercentage(className, id) {
-        var x = document.getElementsByClassName(className)
-        percentage = (x[1].value / x[0].value ) * 100
-        document.getElementById(id).value = percentage.toFixed(2) + '%'
-      }
-    </script>
+      <?php
+        }
+      ?>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
   </body>
 </html>
