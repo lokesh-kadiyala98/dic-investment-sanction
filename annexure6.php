@@ -119,7 +119,7 @@
             <tr>
               <th>Total amount disbursed as on</th>
               <td><input required type="date" name="loanDisbDate" /></td>
-              <td><input required disabled type="number" name="loanDisbAmt" id="totalLoanDisbursed" oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
+              <td><input required readonly type="number" name="loanDisbAmt" id="totalLoanDisbursed" oninput="calculateTotal('loanDibursed', 'totalLoanDisbursed')" /></td>
             </tr>
             <tr>
               <th>c.</th>
@@ -158,8 +158,8 @@
             <tr>
               <th></th>
               <th>Total</th>
-              <td><input required disabled type="number" id="totalAsPerApprisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="totalAppr" /></td>
-              <td><input required disabled type="number" id="totalActual" oninput="calculateTotal('asPerActualInvst','totalActual')" name="totalActu" /></td>
+              <td><input required readonly type="number" id="totalAsPerApprisal" oninput="calculateTotal('asPerAppraisal','totalAsPerApprisal')" name="totalAppr" /></td>
+              <td><input required readonly type="number" id="totalActual" oninput="calculateTotal('asPerActualInvst','totalActual')" name="totalActu" /></td>
             </tr>
           </tbody>
         </table>

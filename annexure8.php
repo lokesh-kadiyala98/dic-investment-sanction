@@ -144,7 +144,7 @@
               <td><input name="totEmpNoGrpB" oninput="calculateTotal('noEmp','totalNoEmp'); calculatePercentage('B','percentLocalsGrpB')" type="number" class="noEmp B" name="noEmpGrpB" /></td>
               <td><input name="totEmpNoGrpC" oninput="calculateTotal('noEmp','totalNoEmp'); calculatePercentage('C','percentLocalsGrpC')" type="number" class="noEmp C" name="noEmpGrpC" /></td>
               <td><input name="totEmpNoGrpD" oninput="calculateTotal('noEmp','totalNoEmp'); calculatePercentage('D','percentLocalsGrpD')" type="number" class="noEmp D" name="noEmpGrpD" /></td>
-              <td><input type="number" disabled id="totalNoEmp" /></td>
+              <td><input type="number" readonly id="totalNoEmp" /></td>
             </tr>
             <tr>
               <th>B.</th>
@@ -153,15 +153,15 @@
               <td><input name="localEmpNoGrpB" oninput="calculateTotal('noLocals','totalNoLocals'); calculatePercentage('B','percentLocalsGrpB')" type="number" class="noLocals B" name="noLocalsGrpA" /></td>
               <td><input name="localEmpNoGrpC" oninput="calculateTotal('noLocals','totalNoLocals'); calculatePercentage('C','percentLocalsGrpC')" type="number" class="noLocals C" name="noLocalsGrpA" /></td>
               <td><input name="localEmpNoGrpD" oninput="calculateTotal('noLocals','totalNoLocals'); calculatePercentage('D','percentLocalsGrpD')" type="number" class="noLocals D" name="noLocalsGrpA" /></td>
-              <td><input type="number" disabled id="totalNoLocals" /></td>
+              <td><input type="number" readonly id="totalNoLocals" /></td>
             </tr>
             <tr>
               <th>C.</th>
               <th>Percentage of local persons(Kannadigas) to total</th>
-              <td><input disabled id="percentLocalsGrpA" /></td>
-              <td><input disabled id="percentLocalsGrpB" /></td>
-              <td><input disabled id="percentLocalsGrpC" /></td>
-              <td><input disabled id="percentLocalsGrpD" /></td>
+              <td><input readonly id="percentLocalsGrpA" /></td>
+              <td><input readonly id="percentLocalsGrpB" /></td>
+              <td><input readonly id="percentLocalsGrpC" /></td>
+              <td><input readonly id="percentLocalsGrpD" /></td>
               <td></td>
             </tr>
             <tr>

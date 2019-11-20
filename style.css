@@ -48,7 +48,7 @@ input:focus {
   border-color: transparent;
 }
 
-input:disabled {
+input:readonly {
   background-color: inherit;
 }
 
