@@ -17,7 +17,6 @@ function validatePrint() {
 
 function calculateTotal(className, id) {
   var x = document.getElementsByClassName(className)
-  console.log(x)
   var sum = 0
   for (let i=0; i<x.length; i++){
     sum += parseInt(x[i].value ? x[i].value : 0)
