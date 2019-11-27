@@ -283,7 +283,7 @@
               <td><input type="number" class="actualInvst" oninput="calculateTotal('actualInvst', 'totalActu')" /></td>
             <tr>
               <td>TOTAL (auto calculated)</td>
-              <td><input type= id="totalActu" name="actualInvstDet" /></td>
+              <td><input readonly id="totalActu" name="actualInvstDet" /></td>
             </tr>
 
             <tr>
